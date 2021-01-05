@@ -1,97 +1,96 @@
 {
   "name": "auto-cookie",
-  "description": "auto set cookie domain like google-analytics",
   "version": "2.0.0",
-  "author": "UNCOVER TRUTH Inc.",
-  "bugs": {
-    "url": "https://github.com/uncovertruth/auto-cookie/issues"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@types/finalhandler": "0.0.33",
-    "@types/js-cookie": "2.2.2",
-    "@types/mocha": "5.2.7",
-    "@types/node": "9.6.49",
-    "@types/power-assert": "1.5.0",
-    "@types/serve-static": "1.13.2",
-    "@types/webdriverio": "4.13.3",
-    "@uncovertruth/eslint-config": "4.5.0",
-    "@uncovertruth/tslint-config": "4.5.0",
-    "cross-env": "5.2.0",
-    "eslint": "5.16.0",
-    "espower-typescript": "9.0.2",
-    "finalhandler": "1.1.1",
-    "husky": "1.3.1",
-    "js-cookie": "2.2.0",
-    "lint-staged": "8.2.0",
-    "mocha": "5.2.0",
-    "power-assert": "1.6.1",
-    "prettier-eslint-cli": "4.7.1",
-    "rimraf": "2.6.3",
-    "serve-static": "1.14.1",
-    "size-limit": "0.22.0",
-    "ts-loader": "5.4.5",
-    "ts-node": "8.2.0",
-    "tslint": "5.17.0",
-    "typescript": "3.5.1",
-    "typescript-eslint-parser": "21.0.2",
-    "wdio-mocha-framework": "0.6.4",
-    "wdio-sauce-service": "0.4.14",
-    "wdio-selenium-standalone-service": "0.0.10",
-    "wdio-spec-reporter": "0.1.5",
-    "webdriverio": "4.14.4",
-    "webpack": "4.33.0",
-    "webpack-cli": "3.3.4"
-  },
-  "files": [
-    "lib/"
-  ],
-  "homepage": "https://github.com/uncovertruth/auto-cookie#readme",
-  "keywords": [
-    "cookie"
-  ],
-  "license": "MIT",
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.ts": [
-      "prettier-eslint --parser typescript --write",
-      "tslint --fix",
-      "git add"
-    ],
-    "*.md": [
-      "prettier --parser markdown --write",
-      "git add"
-    ]
-  },
-  "main": "lib/index.js",
-  "peerDependencies": {
-    "js-cookie": "2.x"
-  },
+  "description": "auto set cookie domain like google-analytics",
+  "license": "WTFPL",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/uncovertruth/auto-cookie.git"
+    "url": "git+ssh://git@github.com/harikitech/auto-cookie.git"
   },
+  "author": "harikitech",
+  "homepage": "https://github.com/harikitech/auto-cookie#readme",
+  "bugs": {
+    "url": "https://github.com/harikitech/auto-cookie/issues"
+  },
+  "main": "lib/index.js",
   "scripts": {
-    "build": "tsc && webpack --env=production && size-limit",
+    "build": "tsc && webpack --env=production",
     "clean": "rimraf lib",
-    "lint": "tslint '{src,test}/*.ts'",
+    "lint": "run-s -l lint:*",
+    "lint:eslint": "eslint . --ext=ts,tsx",
+    "lint:prettier": "prettier {src,test}/**/*.ts --check",
+    "lint:ts": "tsc -p . --noEmit",
     "prebuild": "npm run clean",
-    "precommit": "lint-staged",
     "prepublish": "npm run build",
     "prestart": "webpack",
     "pretest": "webpack",
     "start": "ts-node server.ts",
-    "test": "wdio wdio.conf.js",
-    "test:sauce": "cross-env CI_MODE=sauce wdio wdio.conf.js"
+    "test": "wdio wdio.conf.js"
   },
-  "size-limit": [
-    {
-      "path": "lib/index.js",
-      "limit": "300 B"
-    }
+  "files": [
+    "lib/"
   ],
-  "types": "lib/index.d.ts"
+  "keywords": [
+    "cookie"
+  ],
+  "peerDependencies": {
+    "js-cookie": "2.x"
+  },
+  "devDependencies": {
+    "@9renpoto/eslint-config-typescript": "^7.0.3",
+    "@types/finalhandler": "1.1.0",
+    "@types/js-cookie": "2.2.6",
+    "@types/mocha": "^8.0.0",
+    "@types/power-assert": "1.5.3",
+    "@types/serve-static": "1.13.4",
+    "@wdio/cli": "^6.0.9",
+    "@wdio/local-runner": "^6.0.9",
+    "@wdio/mocha-framework": "^6.0.8",
+    "@wdio/spec-reporter": "^6.0.8",
+    "@wdio/sync": "^6.0.8",
+    "chromedriver": "^87.0.1",
+    "eslint": "^7.0.0",
+    "eslint-plugin-mocha": "^8.0.0",
+    "espower-typescript": "9.0.2",
+    "finalhandler": "1.1.2",
+    "husky": "^4.2.3",
+    "js-cookie": "2.2.1",
+    "lint-staged": "^10.1.1",
+    "npm-run-all": "4.1.5",
+    "power-assert": "1.6.1",
+    "prettier": "^2.0.2",
+    "prettier-plugin-package": "1.3.0",
+    "rimraf": "3.0.2",
+    "serve-static": "1.14.1",
+    "size-plugin": "^2.0.1",
+    "ts-loader": "8.0.14",
+    "ts-node": "9.1.1",
+    "typescript": "4.1.3",
+    "wdio-chromedriver-service": "^6.0.1",
+    "webpack": "5.11.1",
+    "webpack-cli": "4.3.1"
+  },
+  "types": "lib/index.d.ts",
+  "eslintConfig": {
+    "extends": [
+      "@9renpoto/eslint-config-typescript"
+    ],
+    "plugins": [
+      "mocha"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,md,json}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
 }

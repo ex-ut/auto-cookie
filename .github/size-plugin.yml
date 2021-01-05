@@ -1,0 +1,5 @@
+base-branches:
+    - master
+size-files:
+    - dir: lib
+      filename: index.js
